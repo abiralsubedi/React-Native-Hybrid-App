@@ -5,7 +5,7 @@ import {SecureStore, Permissions, ImagePicker} from 'expo';
 import {createBottomTabNavigator} from 'react-navigation';
 import {baseUrl} from '../shared/baseUrl';
 
-class LoginTab extends Component {
+class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -69,75 +69,75 @@ class LoginTab extends Component {
     }
 }
 
-class RegisterTab extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            username: '',
-            password: '',
-            firstname: '',
-            lastname: '',
-            email: '',
-            remember: false,
-            imageUrl: baseUrl + 'images/logo.png'
-        }
-    }
+// class RegisterTab extends Component {
+//     constructor(props) {
+//         super(props);
+//         this.state = {
+//             username: '',
+//             password: '',
+//             firstname: '',
+//             lastname: '',
+//             email: '',
+//             remember: false,
+//             imageUrl: baseUrl + 'images/logo.png'
+//         }
+//     }
 
-    static navigationOptions = {
-        title: 'Register',
+//     static navigationOptions = {
+//         title: 'Register',
         
-    };
+//     };
 
-    handleRegister() {
-        console.log(JSON.stringify(this.state));
-        if (this.state.remember)
-            SecureStore.setItemAsync('userinfo', JSON.stringify({username: this.state.username, password: this.state.password}))
-                .catch((error) => console.log('Could not save user info', error));
-    }
+//     handleRegister() {
+//         console.log(JSON.stringify(this.state));
+//         if (this.state.remember)
+//             SecureStore.setItemAsync('userinfo', JSON.stringify({username: this.state.username, password: this.state.password}))
+//                 .catch((error) => console.log('Could not save user info', error));
+//     }
 
-    render() {
-        return(
-            <ScrollView>
-                <View style={styles.container} >
-                    <Input placeholder='Username' leftIcon={{type:'font-awesome', name: 'user-o'}} containerStyle={styles.formInput}
-                        onChangeText={(username) => this.setState({username})} value={this.state.username}/>
+//     render() {
+//         return(
+//             <ScrollView>
+//                 <View style={styles.container} >
+//                     <Input placeholder='Username' leftIcon={{type:'font-awesome', name: 'user-o'}} containerStyle={styles.formInput}
+//                         onChangeText={(username) => this.setState({username})} value={this.state.username}/>
                 
-                    <Input placeholder='Password' leftIcon={{type:'font-awesome', name: 'key'}} containerStyle={styles.formInput}
-                        onChangeText={(password) => this.setState({password})} value={this.state.password}/>
+//                     <Input placeholder='Password' leftIcon={{type:'font-awesome', name: 'key'}} containerStyle={styles.formInput}
+//                         onChangeText={(password) => this.setState({password})} value={this.state.password}/>
 
-                    <Input placeholder='First Name' leftIcon={{type:'font-awesome', name: 'user-o'}} containerStyle={styles.formInput}
-                        onChangeText={(firstname) => this.setState({firstname})} value={this.state.firstname}/>
+//                     <Input placeholder='First Name' leftIcon={{type:'font-awesome', name: 'user-o'}} containerStyle={styles.formInput}
+//                         onChangeText={(firstname) => this.setState({firstname})} value={this.state.firstname}/>
                     
-                    <Input placeholder='Last Name' leftIcon={{type:'font-awesome', name: 'user-o'}} containerStyle={styles.formInput}
-                        onChangeText={(lastname) => this.setState({lastname})} value={this.state.lastname}/>
+//                     <Input placeholder='Last Name' leftIcon={{type:'font-awesome', name: 'user-o'}} containerStyle={styles.formInput}
+//                         onChangeText={(lastname) => this.setState({lastname})} value={this.state.lastname}/>
                     
-                    <Input placeholder='Email' leftIcon={{type:'font-awesome', name: 'envelope-o'}} containerStyle={styles.formInput}
-                        onChangeText={(email) => this.setState({email})} value={this.state.email}/>
+//                     <Input placeholder='Email' leftIcon={{type:'font-awesome', name: 'envelope-o'}} containerStyle={styles.formInput}
+//                         onChangeText={(email) => this.setState({email})} value={this.state.email}/>
                     
-                    <CheckBox title='Remember Me' checked={this.state.remember} center containerStyle={styles.formCheckbox}
-                        onPress={() => this.setState({remember: !this.state.remember})}/>
+//                     <CheckBox title='Remember Me' checked={this.state.remember} center containerStyle={styles.formCheckbox}
+//                         onPress={() => this.setState({remember: !this.state.remember})}/>
 
-                    <View style={styles.formButton}>
-                        <Button onPress={()=> this.handleRegister()} title='Register' buttonStyle={{backgroundColor: '#512DA8'}}
-                            icon={<Icon name='user-plus' type='font-awesome' color='white' size={24}/>}/> 
-                    </View>
-                </View>
-            </ScrollView>
-        )
-    }
-}
+//                     <View style={styles.formButton}>
+//                         <Button onPress={()=> this.handleRegister()} title='Register' buttonStyle={{backgroundColor: '#512DA8'}}
+//                             icon={<Icon name='user-plus' type='font-awesome' color='white' size={24}/>}/> 
+//                     </View>
+//                 </View>
+//             </ScrollView>
+//         )
+//     }
+// }
 
-const Login = createBottomTabNavigator({
-    Login: LoginTab,
-    Register: RegisterTab
-}, {
-    tabBarOptions = {
-        activeBackgroundColor: '#9575CD',
-        inactiveBackgroundColor: '#D1C4E9',
-        activeTintColor: 'white',
-        inactiveTintColor: 'gray'
-    }
-})
+// const LoginTab = createBottomTabNavigator({
+//     Login: LoginTab,
+//     Register: RegisterTab
+// }, {
+//     tabBarOptions = {
+//         activeBackgroundColor: '#9575CD',
+//         inactiveBackgroundColor: '#D1C4E9',
+//         activeTintColor: 'white',
+//         inactiveTintColor: 'gray'
+//     }
+// })
 
 const styles = StyleSheet.create({
     container: {
@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
         backgroundColor: null
     },
     formButton: {
-        margin: 60
+        margin: 20
     }
 })
 
