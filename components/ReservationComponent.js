@@ -94,7 +94,7 @@ class Reservation extends Component {
                 <View style={styles.formRow}>
                     <Text style={styles.formLabel}>Date and Time</Text>
                     <DatePicker style={{flex: 2, marginRight: 20}} date={this.state.date} format=''
-                        mode='datetime' placeholder='Select Date and Time' minDate='2018-01-01' confirmBtnText='Confirm' cancelBtnText='Cancel' 
+                        mode='datetime' placeholder='Select Date and Time' minDate={new Date().toISOString().substring(0,10)} confirmBtnText='Confirm' cancelBtnText='Cancel' 
                         customStyles={{
                             dateIcon: {
                                 position: 'absolute',

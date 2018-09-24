@@ -6,7 +6,7 @@ import Contact from './ContactComponent';
 import DishDetail from './DishdetailComponent';
 import Favorite from './FavoriteComponent';
 import Login from './LoginComponent';
-import {ScrollView, View,Text, Image, StyleSheet, StatusBar} from 'react-native';
+import {ScrollView, View,Text, Image, StyleSheet, StatusBar, NetInfo, ToastAndroid} from 'react-native';
 import {Icon} from 'react-native-elements';
 import {createStackNavigator, createDrawerNavigator, DrawerItems, SafeAreaView} from 'react-navigation';
 import {connect} from 'react-redux';
@@ -239,7 +239,42 @@ class Main extends Component {
         this.props.fetchComments();
         this.props.fetchLeaders();
         this.props.fetchPromos();
+
+        NetInfo.getConnectionInfo()
+            .then((connectionInfo) => {
+                ToastAndroid.show('Initial Network Connectivity Type: '+ connectionInfo.type + ' effective type '+ connectionInfo.effectiveType, ToastAndroid.LONG)
+            });
+
+        NetInfo.addEventListener('connectionChange', this.handleConnectivityChange)
     }
+
+    componentWillUnmount() {
+        NetInfo.removeEventListener('connectionChange', this.handleConnectivityChange)
+    }
+
+    handleConnectivityChange = (connectionInfo) => {
+        switch(connectionInfo.type) {
+            case 'none':
+                ToastAndroid.show('You are now offline.', ToastAndroid.LONG);
+                break;
+            case 'wifi':
+                ToastAndroid.show('You are now connected to wifi.', ToastAndroid.LONG);
+                break;
+
+            case 'cellular':
+                ToastAndroid.show('You are now connected to cellular network.', ToastAndroid.LONG);
+                break;
+
+            case 'unknown':
+                ToastAndroid.show('You are now connected to unknown network.', ToastAndroid.LONG);
+                break;
+
+            default:
+                break;
+
+        }
+    }
+
     render() {
         
         return(
